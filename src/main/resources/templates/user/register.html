@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <style>
+        input{
+            width: 30%;
+        }
+        .mainLogin{
+            margin-top: 30%;
+        }
+    </style>
+</head>
+<body>
+<span th:replace="common/commonStyles :: common"></span>
+
+<div id="app">
+    <div class="jumbotron" >
+        <h1 style="margin: 0px auto;display: table;">欢迎来到在线考试系统</h1>
+        <p style="margin: 0px auto;display: table;">请注册</p><br/>
+        <p style="margin: 0px auto;display: table;"><a class="el-button el-button--primary" href="/toLogin" role="button">返回登录</a></p>
+    </div>
+    <div style="margin: 0 auto;height: 70vh;width: 35%" class="mainLogin">
+        <form action="/register">
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="sizing-addon1">账号</span>
+                <input name="username" type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+            </div>
+            <br/>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="sizing-addon2">密码</span>
+                <input type="text" name="password" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+            </div>
+            <br/>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="sizing-addon3">角色</span>
+                <input type="text" name="perms" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+            </div>
+            <br/>
+            <div>
+                <button class="el-button el-button--primary" style="margin: 0 42.8%">确认注册</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

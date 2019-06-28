@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .card {
+            width: 75%;
+            margin: 0 auto;
+        }
+        
+        .cardHead h2 {
+            color: #50aff5;
+        }
+        
+        .cardBody {}
+        
+        .cardTable thead,
+        .cardTable tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+        .cardTable input {
+            display: inline-block;
+            width: 16.3%;
+        }
+        .cardTable button {
+            display: inline-block;
+            width: 8%;
+            margin: 0!important;
+         }
+        
+        .cardTable tbody {
+            width: 100%;
+            display: block;
+            height: 65vh;
+            overflow-y: scroll;
+        }
+        .bottom{
+            width: 30%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <span th:replace="common/commonStyles :: common"></span>
+
+    <div id="app">
+        <span th:replace="common/topbar_out :: topbar"></span>
+
+        <div class="panel panel-default card">
+            <!-- Default panel contents -->
+            <div class="panel-heading cardHead">
+                <h2>题库录入</h2>
+            </div>
+            <div class="panel-body cardBody">
+                <!--                    <p>我是占位符哦</p>-->
+
+
+                <!-- Table -->
+
+                <table id="mainTable" class="table table-hover cardTable">
+                    <thead>
+                        <tr>
+                            <td style="width: 5%">序号</td>
+                            <td>题目</td>
+                            <td>备择答案A</td>
+                            <td>备择答案B</td>
+                            <td>备择答案C</td>
+                            <td>答案</td>
+                            <td>操作</td>
+                        </tr>
+                    </thead>
+
+                    <tbody id="mainTbody">
+                        <tr>
+                            <td>
+                                <form id="f1" target="hidden" class="form_" action="/addQuestions" method="get">
+                                    <input class="el-input__inner" placholder="序号" value="1" disabled="disabled" style="width: 4%">
+                                    <input class="el-input__inner" name="body" placholder="题目">
+                                    <input class="el-input__inner" name="option0" placholder="备择答案1">
+                                    <input class="el-input__inner" name="option1" placholder="备择答案2">
+                                    <input class="el-input__inner" name="option2" placholder="备择答案3">
+                                    <input class="el-input__inner" name="answer" placholder="答案">
+                                    <button type="reset" class="el-button el-button--danger">清空内容</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="bottom">
+                    <button id="add" class="el-button el-button--primary" onclick="createRow()">再出一题</button>
+                    <button id="submit" class="el-button el-button--primary" onclick="submit()">确认录入</button>
+                    <a href="/home" style="margin-left: 10px; "><button id="back" class="el-button el-button--primary">返回首页</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+<iframe id="hidden" name_="hidden" src="" hidden="hidden"></iframe>
+</body>
+<script>
+    var count = 1;
+    function createRow(){
+        var code ="<tr>\n" +
+            "                            <td>\n" +
+            "                                <form id=\"f"+ ++count +"\" target=\"hidden\" class='form_' action=\"/addQuestions\"  method=\"post\">\n" +
+            "                                    <input class=\"el-input__inner\" name_=\"body\"  value=\""+ count +"\" disabled=\"disabled\" style=\"width: 3%\">\n" +
+            "                                    <input class=\"el-input__inner\" name_=\"body\" >\n" +
+            "                                    <input class=\"el-input__inner\" name_=\"option0\" >\n" +
+            "                                    <input class=\"el-input__inner\" name_=\"option1\" >\n" +
+            "                                    <input class=\"el-input__inner\" name_=\"option2\" >\n" +
+            "                                    <input class=\"el-input__inner\" name_=\"answer\" >\n" +
+            "                                    <button type_=\"reset\" class=\"el-button el-button--danger\">清空内容</button>\n" +
+            "                                </form>\n" +
+            "                            </td>\n" +
+            "                        </tr>"
+        $("#mainTbody").append(code);
+    }
+    
+    function submit() {
+        var forms = document.getElementsByClassName("form_");
+        var i;
+        for (i = 0;i < forms.length;i++){
+            forms[i].submit();
+        }
+
+    }
+</script>
+</html>

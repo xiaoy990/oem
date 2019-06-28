@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoy.oem.mapper.examinationRecordMapper.ExaminationRecordMapper">
+
+    <insert id="addExaminationRecord">
+        insert into t_examinationRecord
+        (id,userNumber,examCode,mistakesCollection,grade)
+        values (#{examinationRecord.id},#{examinationRecord.userNumber},#{examinationRecord.examCode},#{examinationRecord.mistakesCollection},#{examinationRecord.grade})
+    </insert>
+
+    <select id="queryExaminationRecord" resultType="com.xiaoy.oem.entity.examinationRecord.ExaminationRecord">
+        select * from t_examinationRecord where id = #{examinationRecord.id}
+    </select>
+
+    <select id="queryExaminationRecordByUsername" resultType="com.xiaoy.oem.entity.examinationRecord.ExaminationRecord">
+        select * from t_examinationRecord where userNumber = #{examinationRecord.userNumber}
+    </select>
+</mapper>

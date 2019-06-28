@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>历史考试记录</title>
+</head>
+<body>
+<span th:replace="common/commonStyles :: common"></span>
+
+<div id="app">
+    <span th:replace="common/topbar_out :: topbar"></span>
+
+    <div class="jumbotron" >
+        <h1 style="margin: 0px auto;display: table;">Hello, welcome to online exam system!</h1>
+        <p style="margin: 0px auto;display: table;">这里是你的历史考试记录</p><br/>
+        <p style="margin: 0px auto;display: table;"><a class="el-button el-button--primary" href="/homeExam" role="button">返回首页</a></p>
+    </div>
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading" style="color: #67C23A;"><h4>我的历史考试记录</h4></div>
+        <!--        <div class="panel-body">-->
+        <!--            <p>我是占位符哦</p>-->
+        <!--        </div>-->
+
+        <!-- Table -->
+        <table class="table table-hover" >
+            <tr class>
+                <td>序号</td>
+                <td>考试名</td>
+                <td>操作</td>
+            </tr>
+            <tr th:each="list,listState:${list}">
+                <td th:text="${listState.index+1}"></td>
+                <td th:text="${list.grade}"></td>
+                <td><a th:href="@{'/toExamGrades?examCode=' + ${list.id}}"><button class="el-button el-button--primary">查看成绩</button></a></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<div>
+
+</div>
+</body>
+</html>

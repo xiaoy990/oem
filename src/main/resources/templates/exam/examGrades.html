@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    span{
+        font-size: large;
+    }
+</style>
+<body>
+<span th:replace="common/commonStyles :: common"></span>
+
+<div id="app">
+    <span th:replace="common/topbar_out :: topbar"></span>
+
+    <div style="margin: 0 auto;width: 61.8%">
+        <div class="jumbotron" >
+            <h1 style="margin: 0px auto;display: table;">这里是你本次考试的的成绩单</h1>
+            <p style="margin: 0px auto;display: table;">Grades Here</p><br/>
+            <p style="margin: 0px auto;display: table;"><a class="el-button el-button--primary" href="/home" role="button">回到主页</a></p>
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading" style="color: #3a8ee6;"><h2>成绩详情</h2></div>
+                    <div class="panel-body">
+                        <p th:text="成绩：+${record.grade}"></p>
+                    </div>
+                    <div class="panel-body">
+                        <p th:text="成绩：+${rate}"></p>
+                    </div>
+            </div>
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading" style="color: #F56C6C;"><h2>错题信息</h2></div>
+                <div class="panel-body" th:each="list,listStat:${list}">
+                    <p th:text="${list.body}"></p>
+                    <span th:text="A： +${list.option1}"></span> <span th:text="B： +${list.option2}"></span> <span th:text="C： +${list.option3}"></span>
+                    <br/>
+                    <p th:text="我的答案：+${list.options}" style="color:#F56C6C;"></p>
+                    <p th:text="正确答案：+${list.answer}" style="color:#67C23A">正确答案</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+/* 本css为主页面index.html 配置 */
+
+/* 通用样式 */
+
+/* PC端样式 */
+
+@media screen and (min-width: 768px) {
+    
+}
+
+/* 移动端样式 */
+
+@media screen and (max-width: 768px) {
+
+}

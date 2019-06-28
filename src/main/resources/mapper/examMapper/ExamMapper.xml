@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoy.oem.mapper.examMapper.ExamMapper">
+
+    <select id="queryExam" resultType="com.xiaoy.oem.entity.examEntity.Exam">
+        select * from t_exam
+         where id = #{exam.id}
+            or questionNumber like CONCAT('%','${exam.questionNumber}','%')
+            or questionCode like CONCAT('%','${exam.questionCode}','%')
+            or time_ like CONCAT('%','${exam.time_}','%')
+            or date_ like CONCAT('%','${exam.date_}','%')
+            or name_ like CONCAT('%','${exam.name_}','%')
+            or type_ like CONCAT('%','${exam.type_}','%')
+            or course like CONCAT('%','${exam.course}','%')
+    </select>
+
+    <insert id="addExam">
+        insert into t_exam
+        (questionNumber,questionCode,time_,date_,name_,type_,course)
+        values (#{exam.questionNumber},#{exam.questionCode},#{exam.time_},#{exam.date_},#{exam.name_},#{exam.type_
+        },#{exam.course})
+    </insert>
+
+    <select id="queryExamById" resultType="com.xiaoy.oem.entity.examEntity.Exam">
+        select * from t_exam where id = #{id}
+    </select>
+
+</mapper>

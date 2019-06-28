@@ -1,0 +1,36 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost/db_oes?autoReconnect=true&useSSL=false&serverTimezone=GMT&characterEncoding=utf-8
+    username: root
+    password: mysql
+  jpa:
+    show-sql: true
+    hibernate:
+       ddl-auto: update
+       naming:
+         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    open-in-view: true
+  #  servlet:
+  #    multipart:
+  #      location: D:/appData/IdeaProjects/pets/target/classes/upload/
+server:
+    port: 8080
+
+mybatis:
+  type-aliases-package: com.rdbr.entity
+  mapper-locations: classpath:mapper/*/*.xml
+
+---
+spring:
+  profiles: prod
+
+  datasource:
+    url: jdbc:mysql://47.103.10.220 /db_oes?autoReconnect=true&useSSL=false&serverTimezone=GMT&characterEncoding=utf-8
+    username: root
+    password: Join666
+
+server:
+  port: 8090

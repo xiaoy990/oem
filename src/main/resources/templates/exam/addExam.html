@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .main{
+            margin: 0 auto;
+            width: 75%;
+            height: 70ch;
+        }
+        h2{
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+<span th:replace="common/commonStyles :: common"></span>
+
+<div id="app">
+    <span th:replace="common/topbar_out :: topbar"></span>
+    <div class="main">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <span><h2 style="color: #3a8ee6" onclick="submit_()">发布考试</h2></span>
+<!--                <button  class="el-button el-button&#45;&#45;primary" style="margin-left: 70%px">确认发布</button>-->
+<!--                <a href="/home"><button class="el-button el-button&#45;&#45;danger" style="margin-left: 30px">放弃考试</button></a>-->
+            </div>
+
+            <!-- Table -->
+            <form id="mainForm" action="/addExam">
+                <h4>题目总量</h4><input class="el-input__inner" type="text" name="questionNumber">
+                <h4>考试日期</h4><input class="el-input__inner" type="text" name="date_">
+                <h4>考试科目</h4><input class="el-input__inner" type="text" name="course">
+                <h4>考试名称</h4><input class="el-input__inner" type="text" name="name_">
+                <h4>考试性质</h4><input class="el-input__inner" type="text" name="type_">
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    function submit_(){
+        $("#mainForm").submit();
+    }
+</script>
+</html>

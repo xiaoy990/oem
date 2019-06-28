@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoy.oem.mapper.questionMapper.QuestionMapper">
+
+    <select id="queryQuestion" resultType="com.xiaoy.oem.entity.questionEntity.Question">
+        select * from t_question
+        where id = #{question.id}
+            or body like CONCAT('%','${question.body}','%')
+            or options like CONCAT('%','${question.options}','%')
+            or answer like CONCAT('%','${question.answer}','%')
+            or code like CONCAT('%','${question.code}','%')
+    </select>
+
+    <insert id="addQuestion">
+        insert into t_question
+        (body,answer,options,publisher)
+        values (#{question.body},#{question.answer},#{question.options},#{question.publisher})
+    </insert>
+
+    <select id="queryQuestionById" resultType="com.xiaoy.oem.entity.questionEntity.Question">
+        select * from t_question where id = #{id};
+    </select>
+
+</mapper>

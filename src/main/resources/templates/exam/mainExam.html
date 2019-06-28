@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span th:replace="common/commonStyles :: common"></span>
+
+<div id="app">
+    <span th:replace="common/topbar_out :: topbar"></span>
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <span>一体化软件工程实践期末考试 满分100 时间：60分 剩余：60分</span>
+            <button onclick="submit_()" class="el-button el-button--primary" style="margin-left: 50px">提前交卷</button>
+            <a href="/home"><button class="el-button el-button--danger" style="margin-left: 30px">放弃考试</button></a>
+        </div>
+
+        <!-- Table -->
+        <form action="/examHandler" id="mainForm">
+            <input type="hidden" name="examId" th:value="${examId}">
+            <table class="el-table">
+                <tr>
+                    <td>题号</td>
+                    <td>题目</td>
+                    <td>选项A</td>
+                    <td>选项B</td>
+                    <td>选项C</td>
+
+                </tr>
+                <tr th:each="list,listStat:${list}">
+                    <input type="hidden" th:name="question[+${listStat.index}+].id" th:value="${list.id}">
+                    <td><span th:text="${listStat.index+1}"></span></td>
+                    <td><span th:text="${list.body}"></span></td>
+                    <td><input type="radio" th:name="question[+${listStat.index}+].option1" value="A"><span th:text="${list.option1}"></span></td>
+                    <td><input type="radio" th:name="question[+${listStat.index}+].option1" value="B"><span th:text="${list.option2}"></span></td>
+                    <td><input type="radio" th:name="question[+${listStat.index}+].option1" value="C"><span th:text="${list.option3}"></span></td>
+                    <td><input type="hidden" th:name="question[+${listStat.index}+].answer" th:value="${list.answer}"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    function submit_() {
+        $("#mainForm").submit();
+    }
+</script>
+</html>
